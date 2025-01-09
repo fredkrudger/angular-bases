@@ -1,0 +1,31 @@
+<h3>listado de heroes</h3>
+
+<!-- asi se hace el uso de un ngIf y else, en una misma linea -->
+<!-- en la condicion del if, solo se va a ejecutar cuando sea real o sea true, de lo contrario se muestra el else -->
+
+<div *ngIf="deletedHero; else nothingWasDeleted">
+  <h3>Heroe borrado <small class="text-danger">{{ deletedHero }}</small></h3>
+</div>
+
+
+<!-- el ng-template es como un div solo que no se construye hasta que solo se requiere, pero mientras no se requiera, ese ng template no existira dentro del DOM -->
+<!-- para poder acceder a ng template se le agregar el nombre antecedido por un #, por ejemplo: #deleteHero -->
+
+<ng-template #nothingWasDeleted>
+  <h3>No ha borrado nada.</h3>
+</ng-template>
+
+
+
+<a
+*ngIf="heroNames.length > 0"
+(click)="removeLastHero()"
+class="btn btn-outline-danger"  >Borrar Ultimo Heroe</a>
+
+<ul class="mt-2 list-group">
+  <!-- en lo que hacemos uso de *ngFor, debemos declarar la varibale que se va a interpolar con la palabra reservada "let" -->
+  <li *ngFor="let name of heroNames"
+    class="list-group-item">
+    {{ name }}
+  </li>
+</ul>
