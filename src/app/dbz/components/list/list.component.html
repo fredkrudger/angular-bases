@@ -1,0 +1,35 @@
+<h4>Listado</h4>
+<ul class="list-group">
+  <!-- la variable index ya va dentro de la variable characterList, solo estamos usandola para mostrar el numero -->
+  <li *ngFor="
+    let character of characterList;
+    let i = index
+    let isFirst = first
+    let isLast  = last
+    let isEven  = even
+    let isOdd   = odd
+    " class="list-group-item d-flex justify-content-between align-items-center" [ngClass]="{
+      'list-group-item-dark': isLast,
+      'list-group-item-primary': isEven
+    }">
+    <div>
+      <span class="text-primary"> {{ i + 1 }}. </span> <!-- se le suma 1, porque el array empieza en 0 -->
+      <span> {{character.name}} - </span>
+      <strong> Power: </strong>
+      <span> {{character.power}} </span>
+    </div>
+
+    <a (click)="onDeleteCharacter( character.id )" class="btn btn-danger"> X </a>
+
+    <!-- <span> Par: {{ isEven }} </span>
+     <span> Impar:  {{ isOdd }} </span> -->
+
+    <!-- dentro de *ngFor,estan variables variables ya definidas que podemos usar -->
+    <!--
+       first // es el primero
+       last  // es el ultimo
+       even  // es par
+       odd   // es impar
+     -->
+  </li>
+</ul>
